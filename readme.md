@@ -16,7 +16,7 @@ To install and run the Cryptocurrency Portfolio Tracker, follow these steps:
 
 1. **Clone the Repository**:
     ```sh
-    git clone https://github.com/nikolov-daniel/cryptocurrency_assignment.git
+    git clone https://github.com/nikolov-daniel/cryptocurrency_portfolio.git
     cd cryptocurrency_assignment
     ```
 
