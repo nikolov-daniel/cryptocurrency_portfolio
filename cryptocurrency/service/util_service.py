@@ -26,7 +26,7 @@ def get_user_by_email(email: str) -> User:
     return user
 
 
-def get_transaction_by_id(transaction_id: str) -> Transactions:
+def get_transaction_id(transaction_id: str) -> Transactions:
     transaction: Transactions = transactions_repository.get_transaction(transaction_id)
     if not transaction:
         raise InvalidDataError(TRANSACTION_NOT_FOUND)

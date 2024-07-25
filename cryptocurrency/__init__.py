@@ -21,7 +21,7 @@ def create_app(env_name):
         db.session.configure(autoflush=False)
         db.init_app(app)
         scheduler.init_app(app)
-
+# reduce limit (only 100 transactions daily)
         scheduler.add_job(func=scheduled, trigger="interval", seconds=300000, id="crypto")
 
         scheduler.start()

@@ -17,7 +17,7 @@ To install and run the Cryptocurrency Portfolio Tracker, follow these steps:
 1. **Clone the Repository**:
     ```sh
     git clone https://github.com/nikolov-daniel/cryptocurrency_portfolio.git
-    cd cryptocurrency_assignment
+    cd cryptocurrency_portfolio
     ```
 
 2. **Set Up a Virtual Environment**:
@@ -35,14 +35,14 @@ To install and run the Cryptocurrency Portfolio Tracker, follow these steps:
     - Ensure PostgreSQL is installed and running.
     - Create a new database:
       ```sh
-      createdb cryptocurrency_app
+      createdb postgres
       ```
 
 5. **Configure Environment Variables**:
     Create a `.env` file and add your configuration details:
     ```
     
-    SQLALCHEMY_DATABASE_URI=postgresql://username:password@localhost/cryptocurrency_app
+    SQLALCHEMY_DATABASE_URI=postgresql://username:password@localhost/postgres
     API_TOKEN=your_api_key_here
     API_URL=https://rest.coinapi.io/v1/exchangerate
     ```

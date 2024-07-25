@@ -1,12 +1,11 @@
 from flask import session
 from flask_restx import marshal
 
-from cryptocurrency.constants import DUPLICATE_USERNAME, DUPLICATE_EMAIL, USERNAME_OD_PASSWORD_MISSING, WRONG_PASSWORD
+from cryptocurrency.constants import DUPLICATE_USERNAME, DUPLICATE_EMAIL, USERNAME_OR_PASSWORD_MISSING, WRONG_PASSWORD
 from cryptocurrency.dto.user_dto import UserDTO
 from cryptocurrency.exceptions.exceptions import InvalidDataError
 from cryptocurrency.model.user import User
-from cryptocurrency.repository import user_repository, db_util
-#from cryptocurrency.controllers import user_controller
+from cryptocurrency.repository import user_repository, db_util, transactions_repository
 
 
 user_dto = UserDTO.user
@@ -42,7 +41,7 @@ def log_in_user(data):
     user = None
 
     if 'username' not in data and 'email' not in data:
-        raise InvalidDataError(USERNAME_OD_PASSWORD_MISSING)
+        raise InvalidDataError(USERNAME_OR_PASSWORD_MISSING)
     elif 'username' in data:
         user = user_repository.get_user_by_username(data['username'])
     else:

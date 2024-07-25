@@ -8,7 +8,7 @@ from cryptocurrency.service import user_service
 from cryptocurrency.service.transaction_service import save_transaction, update_transaction
 
 
-class CourseServiceTest(unittest.TestCase):
+class TransactionsServiceTest(unittest.TestCase):
     USER_1 = User(id=1,
                   username='user21',
                   email='user21@email.com',
@@ -33,7 +33,7 @@ class CourseServiceTest(unittest.TestCase):
         "password": "123234ffga"
     }
 
-    @patch.object(user_service, "get_user_by_username",
+    @patch.object(transaction_service, "get_user_by_username",
                   return_value=USER_1)
     @patch.object(transaction_service, "create_transaction")
     def test_save_transaction_success(self,
@@ -71,7 +71,7 @@ class CourseServiceTest(unittest.TestCase):
         assert code == 404
         assert result.get('errorMessage')
 
-    @patch.object(transaction_service.get_transaction, "get_transaction_by_id",
+    @patch.object(transaction_service.get_transaction_id, "get_transaction_by_id",
                   return_value=TRANSACTION_1)
     @patch.object(user_service.get_user_by_username, "get_username",
                   return_value=USER_1)

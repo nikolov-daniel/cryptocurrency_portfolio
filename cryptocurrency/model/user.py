@@ -1,5 +1,6 @@
 from cryptocurrency import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.orm import relationship
 
 
 class User(db.Model):
@@ -10,7 +11,6 @@ class User(db.Model):
     username = db.Column(db.String(64), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(), nullable=False)
-
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

@@ -1,7 +1,7 @@
 from cryptocurrency import db
 from sqlalchemy import Enum
 import enum
-import sqlalchemy
+from sqlalchemy.orm import relationship
 
 
 class TransactionType(enum.Enum):
