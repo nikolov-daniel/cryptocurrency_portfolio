@@ -1,4 +1,5 @@
 from flask_restx import Namespace, fields
+from cryptocurrency.model.transaction import TransactionType
 
 
 class TransactionDTO:
@@ -6,28 +7,22 @@ class TransactionDTO:
 
     transaction = api.model('GetTransaction', {
         "id": fields.Integer(),
-        "user_id": fields.Integer(attribute="users.id"),
+        "user_id": fields.Integer(attribute="user_id"),
         "cryptocurrency": fields.String(required=True),
         "amount": fields.Float(required=True),
-        "transactionType": fields.String(),
-        "transactionPrice": fields.Float(),
-        "transactionDate": fields.DateTime()
+        "transactionType": fields.String(required=True,attribute="transaction_type", enum=TransactionType._member_names_),
+        "transactionPrice": fields.Float(attribute="transaction_price"),
+        "transactionDate": fields.DateTime(attribute="transaction_date")
     })
     transaction_post = api.model('PostTransaction', {
-        #"id": fields.Integer(),
-        #"user_id": fields.Integer(attribute="users.id"),
         "cryptocurrency": fields.String(required=True),
         "amount": fields.Float(required=True),
         "transactionType": fields.String(),
         "transactionPrice": fields.Float(),
-        #"transactionDate": fields.DateTime()
     })
     transaction_put = api.model('PutTransaction', {
-        # "id": fields.Integer(),
-        # "user_id": fields.Integer(attribute="users.id"),
         "cryptocurrency": fields.String(),
         "amount": fields.Float(),
         "transactionType": fields.String(),
         "transactionPrice": fields.Float(),
-        # "transactionDate": fields.DateTime()
     })

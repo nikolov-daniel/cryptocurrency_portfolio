@@ -1,22 +1,24 @@
 from cryptocurrency.model.transaction import Transactions
 from cryptocurrency import db
 from flask import jsonify
+from flask_restx import marshal
 from flask_sqlalchemy import SQLAlchemy
+from cryptocurrency.dto.transaction_dto import TransactionDTO
 
 # def get_transactions_by_user_id(user_id):
 #     return Transactions.query.filter(Transactions.user_id == user_id).first()
 
 
 def get_transactions_by_user_id(user_id):
-    return Transactions.query.filter_by(user_id=user_id).all()
+    return marshal(Transactions.query.filter_by(user_id=user_id).all(), TransactionDTO.transaction),200
 
 
 def get_all_transactions():
-    return Transactions.query.all()
+    return marshal(Transactions.query.all(), TransactionDTO.transaction), 200
 
 
 def get_transaction(transaction_id):
-    return Transactions.query.filter(Transactions.id == transaction_id).first()
+    return marshal(Transactions.query.filter(Transactions.id == transaction_id).first(), TransactionDTO.transaction), 200
 
 
 def save_transaction(transaction):

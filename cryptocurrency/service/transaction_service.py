@@ -42,12 +42,14 @@ def create_transaction(transaction):
 
     new_transaction = Transactions(
         #id=transaction["id"],
-        user_id=user.id,
+        user_id=user[0]["id"],
         cryptocurrency=transaction["cryptocurrency"],
         amount=transaction["amount"],
-        #transaction_type=transaction["transaction_type"],
-        #transaction_price=transaction["transaction_price"],
+        transaction_type=transaction["transactionType"],
+        transaction_price=transaction["transactionPrice"],
+
     )
+    print("test")
     save_transaction(new_transaction)
     response_object = {
         "status": "success",

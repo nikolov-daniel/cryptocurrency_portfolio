@@ -21,6 +21,8 @@ class Transactions(db.Model):
     transaction_price = db.Column(db.Float, nullable=False)
     transaction_date = db.Column(db.DateTime, server_default=db.func.GETUTCDATE(), nullable=False)
 
+    user = relationship("User", back_populates="transactions")
+
     def as_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 

@@ -6,6 +6,7 @@ class UserDTO:
     api = Namespace('User')
 
     user = api.model('GetUsers', {
+        "id": fields.Integer(),
         "username": fields.String(),
         "email": fields.String()
     })
