@@ -17,6 +17,9 @@ def get_user_by_username(username):
     return marshal(user, user_dto), 200
 
 
+def get_user_by_username_unmarshalled(username):
+    return user_repository.get_user_by_username(username)
+
 def get_all_users():
     return marshal(user_repository.get_all_users(), user_dto), 200
 
@@ -59,4 +62,4 @@ def log_out_user(username):
     user = user_repository.get_user_by_username(username)
 
     session.pop('username', None)
-    return marshal(user, user_dto), 201
+    return "", 204

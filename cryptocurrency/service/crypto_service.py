@@ -3,7 +3,7 @@ import argparse
 from dotenv import load_dotenv
 import os
 
-prices = None
+prices = {}
 
 
 #https://rest.coinapi.io/v1/exchangerate
@@ -59,16 +59,28 @@ def get_prices(currency):
         print(e)
 
 
-def save_prices():
+def remove_prices():
     global prices
-    prices = get_prices(currency="USD")
+    prices = {}
 
 
-def get_prices_cache():
+def get_prices_cache(currency, symbol):
     global prices
-    if prices is None:
-        return get_prices("USD")
-    return prices
+    if not prices:
+        prices[currency] = get_prices(currency)
+
+    if not currency in prices:
+        prices[currency] = get_prices(currency)
+
+    if symbol is not None:
+        def test_function(x):
+            return x.symbol == symbol
+        result = list(filter(test_function, prices[currency]))
+        if len(result) > 0:
+            return result[0]
+        return {}
+    #print(temp_prices, "temp pr")
+    return prices[currency]
 #base_currency = "USD"
 #get_prices(base_currency)
 

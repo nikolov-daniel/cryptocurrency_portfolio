@@ -13,12 +13,16 @@ def get_transactions_by_user_id(user_id):
     return marshal(Transactions.query.filter_by(user_id=user_id).all(), TransactionDTO.transaction),200
 
 
+def get_transactions_by_user_id_unmarshalled(user_id):
+    return Transactions.query.filter_by(user_id=user_id).all()
+
+
 def get_all_transactions():
     return marshal(Transactions.query.all(), TransactionDTO.transaction), 200
 
 
 def get_transaction(transaction_id):
-    return marshal(Transactions.query.filter(Transactions.id == transaction_id).first(), TransactionDTO.transaction), 200
+    return Transactions.query.get(transaction_id)
 
 
 def save_transaction(transaction):
@@ -37,5 +41,3 @@ def delete_transaction(transaction):
     db.session.commit()
 
 
-def get_transaction_id(transaction_id):
-    return Transactions.query.get(transaction_id)

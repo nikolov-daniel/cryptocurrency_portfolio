@@ -1,5 +1,6 @@
 from cryptocurrency.model.user import User
 
+
 def get_all_users() -> User:
     return User.query.all()
 

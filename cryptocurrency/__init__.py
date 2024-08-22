@@ -3,13 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restx import Api
 from cryptocurrency.config.config import config_by_name
 from flask_apscheduler import APScheduler
-from cryptocurrency.service.crypto_service import save_prices
+from cryptocurrency.service.crypto_service import remove_prices
 
 
 db = SQLAlchemy()
 
 def scheduled():
-    save_prices()
+    remove_prices()
     #print("here")
 
 
